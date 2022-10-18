@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+p {
+  background-image: url('static/background_image.png);
+    }
+</style>
+    <meta charset="UTF-8">
+    <title>Python pokedex</title>
+</head>
+<body>
+<img src={{image}} alt="Pokemon">
+<br>
+Number: {{number}}
+<br>
+Pokemon name: {{name.capitalize()}}.
+<br>
+Height: {{h_and_w[0]}} kg
+Weight: {{h_and_w[1]}} m
+<br>
+His type is:
+{% for elem in pkmn_type%}
+{{elem}}
+{% endfor %}
+<br>
+Description: {{description}}
+<br>
+He is vulnerable to:
+{% for elem in vuln %}
+{{elem}}
+{% endfor %}
+<br>
+Attacks:
+<br>
+{% for k, v in attacks.items() %}
+Level: {{k}} : {{v}}
+<br>
+{% endfor %}
+<form>
+ <input type="button" value="Go back!" onclick="history.back()">
+</form>
+<br>
+</body>
+</html>
