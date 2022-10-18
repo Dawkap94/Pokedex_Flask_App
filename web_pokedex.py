@@ -71,7 +71,6 @@ def main():
     enemies = get_vulnerability_list(number)
     stats = get_pokemon_stats(number)
     h_and_w = get_height_and_weight(number)
-    print(h_and_w)
 
 
 if __name__ == '__main__':

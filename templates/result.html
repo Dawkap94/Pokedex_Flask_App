@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-p {
-  background-image: url('static/background_image.png);
-    }
 </style>
     <meta charset="UTF-8">
     <title>Python pokedex</title>
 </head>
 <body>
 <img src={{image}} alt="Pokemon">
+<body class="intro-header" style="height: -100px; background-image: url('static/background_image.png');
+background-repeat: no-repeat; background-position: 200px; background-size: 500px;">
 <br>
 Number: {{number}}
 <br>
 Pokemon name: {{name.capitalize()}}.
 <br>
+
+<! – h_and_w to obiekt listy [wzrost, waga], poniżej użyte indeksy –>
+
 Height: {{h_and_w[0]}} kg
 Weight: {{h_and_w[1]}} m
 <br>
 His type is:
+
+<! – Poniżej puszczona pętla po liście jego typów –>
+
 {% for elem in pkmn_type%}
 {{elem}}
 {% endfor %}
+
 <br>
 Description: {{description}}
 <br>
 He is vulnerable to:
+
+<! – Poniżej puszczona pętla po liście jego słabości –>
+
 {% for elem in vuln %}
 {{elem}}
 {% endfor %}
+
 <br>
 Attacks:
 <br>
+<! – Literka K to level - klucz, litera V to atak - wartość. Iteracja po formacie {k: v, k:v, k:v... etc.} + odstęp –>
 {% for k, v in attacks.items() %}
 Level: {{k}} : {{v}}
 <br>
 {% endfor %}
 <form>
+    <! – Przycisk cofający na poprzednią stronę ~"wstecz" –>
+
  <input type="button" value="Go back!" onclick="history.back()">
 </form>
 <br>
