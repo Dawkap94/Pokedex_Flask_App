@@ -2,7 +2,7 @@ import collections
 
 import pypokedex
 import requests
-from opposite_types import opposite_types
+from opposite_types import opposite_types, all_evolutions
 
 
 def get_pokemon_number(name: str):
@@ -58,19 +58,41 @@ def get_pokemon_type(number):
 
 def get_height_and_weight(number):
     pokemon = pypokedex.get(dex=number)
-    height_and_weight = [pokemon.height*0.1, pokemon.weight*0.1]
+    height_and_weight = [round(pokemon.height*0.1,2), round(pokemon.weight*0.1, 2)]
     return height_and_weight
+
+
+def get_evolutions(number):
+    pokemon = pypokedex.get(dex=number).name
+    for elem in all_evolutions:
+        if pokemon in elem:
+            return elem
+
+
+def get_evolution_pictures(number):
+    pokemon = pypokedex.get(dex=number).name
+    new_list = []
+    for elem in all_evolutions:
+        if pokemon in elem:
+            pokemons_evolution = elem
+            for pkmns in pokemons_evolution:
+                new_list.append(f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pypokedex.get(name=pkmns).dex}.png")
+
+    return new_list
 
 
 def main():
     name = input("Name: ")
     pokemon = pypokedex.get(name=name)
     number = pokemon.dex
+    images = get_pokemon_image(number)
     attacks = get_attacks_list(number)
     type = get_pokemon_type(number)
     enemies = get_vulnerability_list(number)
     stats = get_pokemon_stats(number)
     h_and_w = get_height_and_weight(number)
+    evolution = get_evolutions(number)
+    evols = get_evolution_pictures(number)
 
 
 if __name__ == '__main__':
