@@ -1,76 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-</style>
-    <meta charset="UTF-8">
-    <title>Python pokedex - {{name.capitalize()}} details</title>
-</head>
-<body>
-<center>
-{% for elem in evos_links: %}
-<img src={{elem}} alt="Pokemon">
-{% endfor %}
-<br>
-<br>
-<img src={{image}} alt="Pokemon">
-<style>
-    { margin: 0; padding: 0; }
+    <head>
+        <meta charset="UTF-8">
+        <title>Python pokedex - {{name.capitalize()}} details</title>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+        <style>
+            * {
+                font-family: 'VT323', monospace;
+                font-size: 19px;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                background-image: url("https://wallpapercave.com/wp/BQYb4Cl.jpg");
+            }
+            .img_border{
+                border: 1px solid slategrey;
+                background-color: #FFF;
+                border-radius: 50%;
+                transition: all 0.3s;
+            }
+            .img_border:hover {
+                transform: scale(1.1);
+                transition: all 0.3s;
+            }
+            .background_pokedex {
+                width: 40vw;
+                height: 87vh;
+                background-image: url("static/background_image.png");
+                background-size: 40vw 87vh;
+            }
+            .pokemon_content {
+                padding-top: 100px;
+            }
+            .pokemon_number {
+                font-size: 2rem;
+            }
+            .pokemon_name {
+                font-size: 2rem;
+            }
+            .pokemon_image {
+                transform: scale(1.1);
+            }
+            .pokemon_description-content {
+                max-width: 500px;
+            }
+            .pokemon_attacks-list{
+                display: flex;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+    <center>
+        {% for elem in evos_links: %}
+        <img class="img_border" src={{elem}} alt="Pokemon">
+        {% endfor %}
+        <div class="background_pokedex">
+            <div class="pokemon_content">
+                <img class="pokemon_image" src={{image}} alt="Pokemon">
+                <div class="pokemon_number">
+                    #{{number}}
+                </div>
+                <div class="pokemon_name">
+                    {{name.capitalize()}}
+                </div>
+                <div>
+                    <h2>Evolutions:</h2>
+                    <div>
+                        {% for elem in evolutions %}
+                        {{elem.capitalize()}}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div>
+                    <! – h_and_w to obiekt listy [wzrost, waga], poniżej użyte indeksy –>
+                    Weight: {{h_and_w[1]}} kg
+                    Height: {{h_and_w[0]}} m
+                </div>
+                <div>
+                    <h2>Type:</h2>
+                        <! – Poniżej puszczona pętla po liście jego typów –>
+                        {% for elem in pkmn_type%}
+                        {{elem}}
+                        {% endfor %}
+                </div>
+                <div>
+                    <h2>Description:</h2>
+                    <p class="pokemon_description-content">{{description}}</p>
+                </div>
+                <div>
+                    <h2>Weaknesses:</h2>
+                    <! – Poniżej puszczona pętla po liście jego słabości –>
+                    <p>
+                        {% for elem in vuln %}
+                        {{elem}}
+                        {% endfor %}
+                    </p>
+                </div>
+                <div>
+                    <h2>Attacks:</h2>
+                    <! – Literka K to level - klucz, litera V to atak - wartość. Iteracja po formacie {k: v, k:v, k:v... etc.} + odstęp –>
 
-    html {
-        background: url('static/background_image.png') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-</style>
-<br>
-#{{number}}
-<br>{{name.capitalize()}}
-    <br>His evolutions:
-{% for elem in evolutions %}
-{{elem.capitalize()}}
-{% endfor %}
-<br>
+                        {% for k, v in attacks.items() %}
+                    <div class="pokemon_attacks-list">
+                        Level: {{k}} : {{v}}
+                            </div>
+                        {% endfor %}
 
-<! – h_and_w to obiekt listy [wzrost, waga], poniżej użyte indeksy –>
+                </div>
+                <form>
+                    <! – Przycisk cofający na poprzednią stronę ~"wstecz" –>
 
-Weight: {{h_and_w[1]}} kg
-Height: {{h_and_w[0]}} m
-<br>
-His type is:
-
-<! – Poniżej puszczona pętla po liście jego typów –>
-
-{% for elem in pkmn_type%}
-{{elem}}
-{% endfor %}
-
-<br>
-Description: {{description}}
-<br>
-He is vulnerable to:
-
-<! – Poniżej puszczona pętla po liście jego słabości –>
-
-{% for elem in vuln %}
-{{elem}}
-{% endfor %}
-
-<br>
-Attacks:
-<br>
-<! – Literka K to level - klucz, litera V to atak - wartość. Iteracja po formacie {k: v, k:v, k:v... etc.} + odstęp –>
-{% for k, v in attacks.items() %}
-Level: {{k}} : {{v}}
-<br>
-{% endfor %}
-<form>
-    <! – Przycisk cofający na poprzednią stronę ~"wstecz" –>
-
- <input type="button" value="Go back!" onclick="history.back()">
-</form>
-<br>
-</center>
-</body>
+                 <input type="button" value="Go back!" onclick="history.back()">
+                </form>
+            </div>
+        </div>
+        <br>
+    </center>
+    </body>
 </html>

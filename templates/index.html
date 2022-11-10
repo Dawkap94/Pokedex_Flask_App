@@ -1,10 +1,22 @@
 {% import "bootstrap/wtf.html" as wtf %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Who's that pokemon?!</title>
-</head>
-<body>
-{{ wtf.quick_form(form) }}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Who's that pokemon?!</title>0
+        <style>
+            body {
+                background-color: cadetblue;
+            }
+            .hehe {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="hehe">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </body>
 </html>
