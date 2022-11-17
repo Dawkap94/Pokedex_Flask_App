@@ -11,7 +11,7 @@ with vulnerabilities.
 5. test_pokedex_classes.py - file contains few app tests
 
 # Images:
-![](https://dawidkapusta-repo-app.herokuapp.com/static/images/pic02.jpg)
+![](https://i.ibb.co/w46MJGP/pic02.jpg)
 
 # To do:
 [] Frontend work
